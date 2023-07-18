@@ -1,0 +1,168 @@
+{% extends 'component/main.html'%}
+{% load static %}
+{% block content %}
+
+<style>
+    .row{
+         margin: 25px;
+    }
+
+</style>
+
+
+<br>
+
+<div class="row">
+    <div class="col-md-12">
+        <h5>COMPONENTS:</h5>
+        <hr>
+        <div class="card card-body">
+            <!--            <a class="btn btn-primary btn-sm btn-block" href="create_component">Create Component</a>-->
+            <form>
+
+                <button class="btn btn-primary" data-target="#exampleModal" data-toggle="modal" data-whatever="@mdo"
+                        style="float: right;" type="button">Create component
+                </button>
+
+                <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                     tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Component</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    {% csrf_token %}
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="recipient-name">Name</label>
+                                        <input class="form-control" id="recipient-name" name="name" type="text">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="recipient-name">Tech</label>
+                                        <input class="form-control" id="recipient-tech" name="tech" type="text">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="recipient-name">Tag</label>
+                                        <input class="form-control" id="recipient-tag" name="tech" type="text">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="message-text">Description</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                                <button id="save" class="btn btn-primary" type="button"> save
+                                    <!--            <form  action="" method="POST">-->
+                                    <!--  {% csrf_token %}-->
+                                    <!--  {{form}}-->
+                                    <!--  <input type="submit" name="Submit">-->
+                                    <!--</form>-->
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Tech</th>
+                    <th>Tag</th>
+
+                </tr>
+
+                {% for component in compList %}
+                <tr>
+                    <td>{{component.name}}</td>
+                    <td>{{component.description}}</td>
+                    <td>{{component.tech}}</td>
+                    <td>{% for tag in component.Tags.all %}{{ tag }}<br/>{% endfor %}</td>
+                    <!--  <td><a class="btn btn-sm btn-info" href="">Update</a></td>
+                      <td><a class="btn btn-sm btn-danger" href="">Remove</a></td> -->
+                </tr>
+                {% endfor %}
+
+
+            </table>
+        </div>
+    </div>
+
+    <!--   <div class="col-md-6">-->
+    <!--        <h5>TAGS:</h5>-->
+    <!--        <hr>-->
+    <!--        <div class="card card-body">-->
+    <!--             <a class="btn btn-primary btn-sm btn-block" href="create_tag">Create Tag</a>-->
+
+    <!--         <table class="table table-sm">-->
+    <!--            <tr>-->
+    <!--                <th>Name</th>-->
+    <!--                <th>Update</th>-->
+    <!--                <th>Remove</th>-->
+    <!--            </tr>-->
+    <!--              {% for tags in tag %}-->
+    <!--              <tr>-->
+    <!--                  <td>{{tags.name}}</td>-->
+    <!--                  <td><a class="btn btn-sm btn-info" href="{% url 'update_tag' %}">Update</a></td>-->
+
+    <!--              </tr>-->
+    <!--              {% endfor %}-->
+    <!--         </table>-->
+</div>
+</div>
+</div>
+
+<!--<script >-->
+<!--$('#exampleModal').on('show.bs.modal', function (event) {-->
+<!--  var button = $(event.relatedTarget) // Button that triggered the modal-->
+<!--  var recipient = button.data('whatever') // Extract info from data-* attributes-->
+<!--  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).-->
+<!--  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.-->
+<!--  var modal = $(this)-->
+<!--  modal.find('.modal-title').text('New message to ' + recipient)-->
+<!--  modal.find('.modal-body input').val(recipient)-->
+<!--})-->
+<!--</script>-->
+<script>
+
+    $('#save').on('click', function (e) {
+        console.log('hello');
+        csr = $("input[name=csrfmiddlewaretoken]").val();
+        console.log(csr);
+        abc = $("#exampleModal").serialize();
+        console.log(save.val());6
+        mydata = {name:'vkname', description:'vkdesc', tech: 'vish', csrfmiddlewaretoken:csr};
+         $.ajax({
+            type: "POST",
+            url: "/create_component/",
+
+            data: mydata,
+            success: function(data) {
+
+
+            },
+
+         });
+    });
+</script>
+
+{% endblock %}
+
+
+
+
+

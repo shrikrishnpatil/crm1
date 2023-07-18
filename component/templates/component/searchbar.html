@@ -1,0 +1,15 @@
+{% extends 'component/main.html' %}
+{% block content %}
+{% include 'component/status.html'%}
+
+{% if post %}
+<center><h2>Search Result Found</h2></center>
+
+<br>
+
+{% for i in post %}
+<center><h2><a href="/user-page">{{i.name}}</a></h2></center>
+{% endfor %}
+    {% else %}
+<center><h1>Nothing Found</h1></center>
+{% endif %}

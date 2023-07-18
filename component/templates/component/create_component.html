@@ -1,0 +1,13 @@
+{% extends 'component/main.html' %}
+{% load static %}
+{%block content %}
+
+<form  action="" method="POST">
+  {% csrf_token %}
+  {{form}}
+    <h1>component</h1>
+  <input type="submit" name="Submit">
+</form>
+
+{% endblock %}
+

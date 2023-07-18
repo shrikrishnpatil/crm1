@@ -1,0 +1,32 @@
+{% extends 'component/main.html'%}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="card card-body">
+        <h5>Employee:</h5>
+        <hr>
+        <a class="btn btn-outline-info btn-sm btn-block" href="">Update Employee</a>
+        <a class="btn btn-outline-danger btn-sm btn-block" href="">Delete Employee</a>
+
+    </div>
+</div>
+
+<div class="col-md">
+    <div class="card card-body">
+        <h5>Contact Information</h5>
+        <hr>
+        <p>Email:</p>
+        <p>Phone:</p>
+    </div>
+</div>
+
+<div class="card card-body">
+    <h5>Total Employees</h5>
+    <hr>
+    <h1 style="text-align: center; padding: 10px"></h1>
+</div>
+
+{% endblock %}

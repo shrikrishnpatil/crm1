@@ -1,0 +1,33 @@
+{% extends 'component/main.html'%}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Component</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>component</th>
+                   <!-- <th>Category</th>-->
+                    <th>Tags</th>
+                </tr>
+
+                {% for i in component %}
+                <tr>
+                   <td>{{i.name}}</td>
+                    <td>{{i.Tags}}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
